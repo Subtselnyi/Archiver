@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/shortcuts">
+        <file>AddFile.png</file>
+        <file>Author.png</file>
+        <file>deleteFile.png</file>
+        <file>File.png</file>
+        <file>help.png</file>
+        <file>settings.png</file>
+        <file>site.png</file>
+        <file>Archive.png</file>
+    </qresource>
+</RCC>
