@@ -4,6 +4,7 @@
 #include <QFileDialog>
 #include <QCompleter>
 #include <QFileSystemModel>
+#include "progressbardialog.h"
 
 ArchiveDialog::ArchiveDialog(QWidget *parent) :
     QDialog(parent),
@@ -36,6 +37,11 @@ void ArchiveDialog::on_ArchiveSearchButton_clicked()
 void ArchiveDialog::on_ArchiveOkButton_clicked()
 {
     emit FilePathArchive(ui->ArchiveLineEdit->text());
+    ProgressBarDialog *wnd5 = new ProgressBarDialog(this);
+    wnd5->show();
+    for(int i=0; i<90;i++){
+    wnd5->on_progressBar_valueChanged(i);
+    }
     close();
 }
 

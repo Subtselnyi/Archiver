@@ -28,19 +28,22 @@ SOURCES += main.cpp\
     addfiledialog.cpp \
     settingsdialog.cpp \
     archivedialog.cpp \
-    dearchivedialog.cpp
+    dearchivedialog.cpp \
+    progressbardialog.cpp
 
 HEADERS  += mainwindow.h \
     addfiledialog.h \
     settingsdialog.h \
     archivedialog.h \
-    dearchivedialog.h
+    dearchivedialog.h \
+    progressbardialog.h
 
 FORMS    += mainwindow.ui \
     addfiledialog.ui \
     settingsdialog.ui \
     archivedialog.ui \
-    dearchivedialog.ui
+    dearchivedialog.ui \
+    progressbardialog.ui
 
 RESOURCES += \
     res.qrc

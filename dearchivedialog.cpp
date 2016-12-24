@@ -4,6 +4,7 @@
 #include <QFileDialog>
 #include <QCompleter>
 #include <QFileSystemModel>
+#include "progressbardialog.h"
 
 DeArchiveDialog::DeArchiveDialog(QWidget *parent) :
     QDialog(parent),
@@ -36,6 +37,11 @@ void DeArchiveDialog::on_DeArchiveSearchButton_clicked()
 void DeArchiveDialog::on_DeArchiveOkButton_clicked()
 {
     emit FilePathDeArchive(ui->DeArchiveLineEdit->text());
+    ProgressBarDialog *wnd5 = new ProgressBarDialog(this);
+    wnd5->show();
+    for(int i=0; i<90;i++){
+    wnd5->on_progressBar_valueChanged(i);
+    }
     close();
 }
 
