@@ -39,7 +39,7 @@
     <normaloff>:/shortcuts/Archive.png</normaloff>:/shortcuts/Archive.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QPushButton" name="pushButton">
+   <widget class="QPushButton" name="ArchiveButton">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -52,7 +52,7 @@
      <string>Archive</string>
     </property>
    </widget>
-   <widget class="QPushButton" name="pushButton_2">
+   <widget class="QPushButton" name="DeArchiveButton">
     <property name="geometry">
      <rect>
       <x>310</x>
@@ -86,7 +86,7 @@
      <string>Compression, %</string>
     </property>
    </widget>
-   <widget class="QLCDNumber" name="lcdNumber">
+   <widget class="QLCDNumber" name="CompressionNumber">
     <property name="geometry">
      <rect>
       <x>320</x>

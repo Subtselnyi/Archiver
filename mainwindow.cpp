@@ -6,6 +6,8 @@
 #include <QTextStream>
 #include "addfiledialog.h"
 #include "settingsdialog.h"
+#include "archivedialog.h"
+#include "dearchivedialog.h"
 #include <QWidget>
 #include <QDragEnterEvent>
 #include <QMimeData>
@@ -82,7 +84,7 @@ void MainWindow::on_actionDelete_All_triggered()
 
 void MainWindow::on_actionSettings_triggered()
 {
-    SettingsDialog *wnd2 = new SettingsDialog(this);
+    SettingsDialog *wnd2 = new SettingsDialog(setted,this);
     wnd2->show();
 
     connect(wnd2,SIGNAL(CheckBoxes(int)),this,SLOT(SettingsCheckBoxes(int)));
@@ -91,6 +93,35 @@ void MainWindow::on_actionSettings_triggered()
 
 void MainWindow::SettingsCheckBoxes(const int code)
 {
+    setted = code;
     QString s = QString::number(code);
      ui->listWidget->addItem(s);
+}
+
+
+void MainWindow::on_ArchiveButton_clicked()
+{
+    ArchiveDialog *wnd3 = new ArchiveDialog(this);
+    wnd3->show();
+
+    connect(wnd3,SIGNAL(FilePathArchive(QString)),this,SLOT(GetPathArchive(QString)));
+
+}
+
+void MainWindow::GetPathArchive(const QString &filePath)
+{
+    ui->listWidget->addItem(filePath);
+}
+
+void MainWindow::on_DeArchiveButton_clicked()
+{
+    DeArchiveDialog *wnd4 = new DeArchiveDialog(this);
+    wnd4->show();
+
+    connect(wnd4,SIGNAL(FilePathDeArchive(QString)),this,SLOT(GetPathDeArchive(QString)));
+}
+
+void MainWindow::GetPathDeArchive(const QString &filePath)
+{
+    ui->listWidget->addItem(filePath);
 }

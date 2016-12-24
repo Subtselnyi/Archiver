@@ -26,15 +26,21 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += main.cpp\
         mainwindow.cpp \
     addfiledialog.cpp \
-    settingsdialog.cpp
+    settingsdialog.cpp \
+    archivedialog.cpp \
+    dearchivedialog.cpp
 
 HEADERS  += mainwindow.h \
     addfiledialog.h \
-    settingsdialog.h
+    settingsdialog.h \
+    archivedialog.h \
+    dearchivedialog.h
 
 FORMS    += mainwindow.ui \
     addfiledialog.ui \
-    settingsdialog.ui
+    settingsdialog.ui \
+    archivedialog.ui \
+    dearchivedialog.ui
 
 RESOURCES += \
     res.qrc

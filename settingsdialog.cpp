@@ -1,13 +1,16 @@
 #include "settingsdialog.h"
 #include "ui_settingsdialog.h"
 
-SettingsDialog::SettingsDialog(QWidget *parent) :
+SettingsDialog::SettingsDialog(const int rules,QWidget *parent) :
     QDialog(parent),
     ui(new Ui::SettingsDialog)
 {
     ui->setupUi(this);
+    if (rules>=100)
     ui->SettingsMusicCheckBox->setChecked(true);
+    if (rules%100>=10)
     ui->SettingsVideoCheckBox->setChecked(true);
+    if (rules%2!=0)
     ui->SettingsPasswordCheckBox->setChecked(true);
 }
 
