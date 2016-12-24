@@ -15,6 +15,7 @@ public:
     explicit AddFileDialog(QWidget *parent = 0);
     ~AddFileDialog();
 
+
 private:
     Ui::AddFileDialog *ui;
 signals:

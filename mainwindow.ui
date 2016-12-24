@@ -96,10 +96,10 @@
      </rect>
     </property>
    </widget>
-   <widget class="QTextBrowser" name="textBrowser">
+   <widget class="QListWidget" name="listWidget">
     <property name="geometry">
      <rect>
-      <x>20</x>
+      <x>30</x>
       <y>20</y>
       <width>256</width>
       <height>311</height>
@@ -122,13 +122,12 @@
     </property>
     <addaction name="actionAdd_file"/>
     <addaction name="actionSettings"/>
-    <addaction name="actionDelete_file"/>
+    <addaction name="actionDelete_All"/>
    </widget>
    <widget class="QMenu" name="menuHELP">
     <property name="title">
      <string>HELP</string>
     </property>
-    <addaction name="actionAuthor"/>
     <addaction name="actionInstruction"/>
     <addaction name="actionVisit_Site"/>
    </widget>
@@ -198,6 +197,15 @@
    </property>
    <property name="text">
     <string>Delete file</string>
+   </property>
+  </action>
+  <action name="actionDelete_All">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/shortcuts/deleteFile.png</normaloff>:/shortcuts/deleteFile.png</iconset>
+   </property>
+   <property name="text">
+    <string>Delete All</string>
    </property>
   </action>
  </widget>

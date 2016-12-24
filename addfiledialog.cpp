@@ -2,12 +2,19 @@
 #include "ui_addfiledialog.h"
 #include <QPushButton>
 #include <QFileDialog>
+#include <QCompleter>
+#include <QFileSystemModel>
 
 AddFileDialog::AddFileDialog(QWidget *parent) :
     QDialog(parent),
     ui(new Ui::AddFileDialog)
 {
     ui->setupUi(this);
+    QCompleter *cmpt;
+    QFileSystemModel *model = new QFileSystemModel(this);
+    cmpt = new QCompleter(model,this);
+    model->setRootPath(QDir::rootPath());
+    ui->AddFileLineEdit->setCompleter(cmpt);
     connect(ui->AddFileOkButton,SIGNAL(clicked()),SLOT(okClicked()));
     connect(ui->AddFileCancelButton,SIGNAL(clicked()),SLOT(close()));
 }

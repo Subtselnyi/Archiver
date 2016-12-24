@@ -14,6 +14,14 @@ class SettingsDialog : public QDialog
 public:
     explicit SettingsDialog(QWidget *parent = 0);
     ~SettingsDialog();
+    int code=0;
+
+private slots:
+    void on_SettingsOkButton_clicked();
+
+    void on_SettingsCancelButton_clicked();
+signals:
+    void CheckBoxes(const int code);
 
 private:
     Ui::SettingsDialog *ui;

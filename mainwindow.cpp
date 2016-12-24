@@ -5,12 +5,17 @@
 #include <QDir>
 #include <QTextStream>
 #include "addfiledialog.h"
+#include "settingsdialog.h"
+#include <QWidget>
+#include <QDragEnterEvent>
+#include <QMimeData>
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    setAcceptDrops(true);
 }
 
 MainWindow::~MainWindow()
@@ -26,9 +31,66 @@ void MainWindow::on_actionAdd_file_triggered()
     connect(wnd1,SIGNAL(FilePath(QString)),this,SLOT(AddFile(QString)));
 
 
+
 }
 
 void MainWindow::AddFile(const QString &filePath)
 {
-    ui->textBrowser->setText(filePath);
+    ui->listWidget->addItem(filePath);
+}
+
+
+
+void MainWindow::on_actionDelete_file_triggered()
+{
+    delete ui->listWidget->currentItem();
+}
+
+void  MainWindow::dragEnterEvent(QDragEnterEvent * event)
+{
+    event->accept();
+}
+
+void  MainWindow::dragLeaveEvent(QDragLeaveEvent * event)
+{
+    event->accept();
+}
+
+void  MainWindow::dragMoveEvent(QDragMoveEvent * event)
+{
+    event->accept();
+}
+
+void  MainWindow::dropEvent(QDropEvent * event)
+{
+    QString numArch;
+    QList<QUrl> urls;
+    QList<QUrl>::Iterator i;
+    urls = event->mimeData()->urls();
+    for(i=urls.begin(); i!=urls.end(); ++i)
+    {
+        numArch = i->path();
+        ui->listWidget->addItem(numArch);
+    }
+
+}
+
+void MainWindow::on_actionDelete_All_triggered()
+{
+    ui->listWidget->clear();
+}
+
+void MainWindow::on_actionSettings_triggered()
+{
+    SettingsDialog *wnd2 = new SettingsDialog(this);
+    wnd2->show();
+
+    connect(wnd2,SIGNAL(CheckBoxes(int)),this,SLOT(SettingsCheckBoxes(int)));
+
+}
+
+void MainWindow::SettingsCheckBoxes(const int code)
+{
+    QString s = QString::number(code);
+     ui->listWidget->addItem(s);
 }
