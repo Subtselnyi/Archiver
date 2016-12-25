@@ -18,6 +18,8 @@ ArchiveDialog::ArchiveDialog(QString allPathes,QWidget *parent) :
     cmpt = new QCompleter(model,this);
     model->setRootPath(QDir::rootPath());
     ui->ArchiveLineEdit->setCompleter(cmpt);
+    QRegExp exp("[a-zA-Z0-9_-]{1,20}");
+    ui->NameArchiveLineEdit->setValidator(new QRegExpValidator(exp,this));
 
 }
 
