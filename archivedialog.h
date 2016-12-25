@@ -3,6 +3,8 @@
 
 #include <QDialog>
 
+#include "bhuffman.h"
+
 namespace Ui {
 class ArchiveDialog;
 }
@@ -12,9 +14,9 @@ class ArchiveDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ArchiveDialog(QWidget *parent = 0);
+    explicit ArchiveDialog(QString,QWidget *parent = 0);
     ~ArchiveDialog();
-
+    QString allPathes;
 signals:
     void FilePathArchive(const QString &atr);
 

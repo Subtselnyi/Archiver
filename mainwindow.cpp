@@ -9,8 +9,11 @@
 #include "archivedialog.h"
 #include "dearchivedialog.h"
 #include <QWidget>
+#include <QDebug>
 #include <QDragEnterEvent>
 #include <QMimeData>
+
+#include "writeread.h"
 
 MainWindow::MainWindow(QWidget *parent) :
     QMainWindow(parent),
@@ -101,7 +104,13 @@ void MainWindow::SettingsCheckBoxes(const int code)
 
 void MainWindow::on_ArchiveButton_clicked()
 {
-    ArchiveDialog *wnd3 = new ArchiveDialog(this);
+    QString str = "";
+    for(int i = 0; i < ui->listWidget->count(); ++i)
+    {
+        QListWidgetItem* item = ui->listWidget->item(i);
+        str+=item->text();
+    }
+    ArchiveDialog *wnd3 = new ArchiveDialog(str,this);
     wnd3->show();
 
     connect(wnd3,SIGNAL(FilePathArchive(QString)),this,SLOT(GetPathArchive(QString)));

@@ -29,14 +29,18 @@ SOURCES += main.cpp\
     settingsdialog.cpp \
     archivedialog.cpp \
     dearchivedialog.cpp \
-    progressbardialog.cpp
+    progressbardialog.cpp \
+    bhuffman.cpp \
+    writeread.cpp
 
 HEADERS  += mainwindow.h \
     addfiledialog.h \
     settingsdialog.h \
     archivedialog.h \
     dearchivedialog.h \
-    progressbardialog.h
+    progressbardialog.h \
+    bhuffman.h \
+    writeread.h
 
 FORMS    += mainwindow.ui \
     addfiledialog.ui \

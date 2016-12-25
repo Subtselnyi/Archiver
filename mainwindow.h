@@ -16,6 +16,8 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     int setted=0;
+
+
 protected:
      void  dragEnterEvent(QDragEnterEvent * event);
      void  dragLeaveEvent(QDragLeaveEvent * event);

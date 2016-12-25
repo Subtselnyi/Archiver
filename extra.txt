@@ -1,0 +1,178 @@
+radiobuttons
+utf-8
+text from BD,
+
+captcha
+
+
+
+геракліт(все тече) сократ(етика, чесноти) демокріт(атомізм) Платон(подвоєння світу, перша соцутопія) Арістотель(євроейстксть) 
+
+Августин, фома Аквінський
+Відродження.
+Бруно
+новий час 17ст Бекон декарт сппиноза лока
+франзузское не трогаем кроме Вольтера и рУссо
+фашисты - КАНТ трансидентальный метод, новый человек, все новое. Гегель, феербах, Маркс
+
+
+Шпенгер кудато еще вписался
+20ст- экзестенциолизм(Камю), феноменология(от мартина до гуссера), структурализм
+
+Есть учебная задача по условиям которой необходимо реализовать класс "Дроби" и перегрузку операторов для этих классов. Что бы можно было выполнять действия: сложения, вычитания, умножения и деления.
+
+Так же необходимо выполнять упрощение дроби что бы не было бессмысленных 20/24 и тп.
+#include <iostream>
+#include <fstream>
+#include <conio.h>
+#include "time.h"
+using namespace std;
+ 
+ 
+void main()
+{
+setlocale(LC_ALL, "Russian");
+ 
+drob a(2,4);
+drob b(2,6);
+drob c=a+b;
+ 
+cout << "результат сложения дроби " << a << ", с дробью " << b << " ровняется" << c << endl;
+cout << "результат сложения дроби " << a << ", с дробью " << b << " ровняется" << a+b << endl;
+ 
+cout << "результат вычитания из дроби " << a << ", дроби " << b << " ровняется" << a-b << endl;
+cout << "результат умножения дроби " << a << ", на дробь " << b << " ровняется" << a*b << endl;
+cout << "результат деления дроби " << a << ", на дробь " << b << " ровняется" << a/b << endl;
+cout << "результат деления дроби " << b << ", на дробь " << a << " ровняется" << b/a << endl;
+ 
+ 
+ 
+cout << "\n\n\n\t\t*** Нажмите любую клавишу что бы закончить ***";
+_getch();
+}
+
+
+#pragma once
+#define _USE_MATH_DEFINES
+#include <iostream>
+#include <cmath>
+#include <math.h>
+typedef unsigned int ui;
+unsigned nod(unsigned m, unsigned n); //прототип функции НОД
+ 
+class drob
+{
+private:
+    int chis;
+    int znam;
+    /*
+    void prost()
+    {
+        int a,b;
+        a=chis;
+        b=znam;
+        if (nod(chis, znam)>1)
+        {
+            int t=nod(chis, znam);
+            znam=b/t;
+            chis=a/t;
+        }
+    }
+    */
+    public:
+    drob(void)
+    {
+    chis=1;
+    znam=1;
+    }
+    drob(int a, int b)
+    {
+        if(a!=0)
+            chis=a;
+        else
+            chis=1;
+        if(b!=0)
+            znam=b;
+        else
+            znam=1;
+        //prost();
+    }
+//  drob(drob& a)
+//  {
+//      a.prost();
+//  }
+ 
+ 
+    drob operator+(drob& a)
+    {
+        drob result;
+        if (znam==a.znam)
+        {
+            result.znam=znam;
+            result.chis=chis+a.chis;
+        }
+        else
+        {
+            result.znam=znam*a.znam;
+            result.chis=(chis*a.znam)+(a.chis*znam);
+        }
+        //result.prost();
+        return result;
+    }
+    drob operator-(drob& a)
+    {
+        drob result;
+        if (znam==a.znam)
+        {
+            result.znam=znam;
+            result.chis=chis-a.chis;
+ 
+        }
+        else
+        {
+            result.znam=znam*a.znam;
+            result.chis=(chis*a.znam)-(a.chis*znam);
+        }
+        //result.prost();
+        return result;
+    }
+    drob operator*(drob& a)
+    {
+        drob result;
+        result.chis=chis*a.chis;
+        result.znam=znam*a.znam;
+        //result.prost();
+        return result;
+    }
+    drob operator*(int a)
+    {
+        drob result;
+        result.chis=chis*a;
+        result.znam=znam;
+        //result.prost();
+        return result;
+    }
+    drob operator/(drob& a)
+    {
+        drob result;
+        drob result1;
+        drob result2;
+        result1=drob(a.znam, a.chis);
+        result2=drob(chis, znam);
+        result=result1*result2;
+        //result.prost();
+        return result;
+            
+    }
+    
+    friend std::ostream& operator<<(std::ostream& os, drob& a)
+    {
+        os << a.chis << "/" << a.znam;
+        return os;
+    }
+ 
+    ~drob()
+    {
+    }
+ 
+};

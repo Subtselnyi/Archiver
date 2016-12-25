@@ -18,6 +18,7 @@ ProgressBarDialog::~ProgressBarDialog()
 
 void ProgressBarDialog::on_progressBar_valueChanged(int value)
 {
+
     ui->progressBar->setValue(value);
     if (value==100)
         close();
