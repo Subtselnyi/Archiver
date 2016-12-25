@@ -104,6 +104,9 @@ void MainWindow::SettingsCheckBoxes(const int code)
 
 void MainWindow::on_ArchiveButton_clicked()
 {
+    int num=0;
+    num = ui->listWidget->count();
+    if (num!=0){
     QString str = "";
     for(int i = 0; i < ui->listWidget->count(); ++i)
     {
@@ -113,7 +116,14 @@ void MainWindow::on_ArchiveButton_clicked()
     ArchiveDialog *wnd3 = new ArchiveDialog(str,this);
     wnd3->show();
 
-    connect(wnd3,SIGNAL(FilePathArchive(QString)),this,SLOT(GetPathArchive(QString)));
+    //connect(wnd3,SIGNAL(FilePathArchive(QString)),this,SLOT(GetPathArchive(QString)));
+    }
+    else
+    {
+        QMessageBox Msgbox;
+        Msgbox.setText("Please add files");
+        Msgbox.exec();
+    }
 
 }
 
@@ -124,10 +134,23 @@ void MainWindow::GetPathArchive(const QString &filePath)
 
 void MainWindow::on_DeArchiveButton_clicked()
 {
+    int num=0;
+    num = ui->listWidget->count();
+    if (num!=0){
+   /* QString s="";
+    s = ui->listWidget->currentItem()->text();*/
     DeArchiveDialog *wnd4 = new DeArchiveDialog(this);
     wnd4->show();
 
     connect(wnd4,SIGNAL(FilePathDeArchive(QString)),this,SLOT(GetPathDeArchive(QString)));
+
+    }
+    else
+    {
+        QMessageBox Msgbox;
+        Msgbox.setText("Please, add files");
+        Msgbox.exec();
+    }
 }
 
 void MainWindow::GetPathDeArchive(const QString &filePath)

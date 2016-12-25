@@ -28,23 +28,28 @@ ArchiveDialog::~ArchiveDialog()
 
 void ArchiveDialog::on_ArchiveSearchButton_clicked()
 {
-    QString fileName = QFileDialog::getOpenFileName(
+    QFileDialog dialog(this);
+    dialog.setFileMode(QFileDialog::Directory);
+    dialog.setOption(QFileDialog::ShowDirsOnly);
+    QString fileName = dialog.getExistingDirectory(
                 this,
                 tr("File Path (SP-Archiver)"),
-                "C://",
-                "All files (*)"
+                QDir::currentPath(),
+                QFileDialog::DontResolveSymlinks
                 );
     ui->ArchiveLineEdit->setText(fileName);
 }
 
 void ArchiveDialog::on_ArchiveOkButton_clicked()
 {
-    emit FilePathArchive(ui->ArchiveLineEdit->text());
-
+    //emit FilePathArchive(ui->ArchiveLineEdit->text());
+    QString arhivePath = ui->ArchiveLineEdit->text();
+    arhivePath += ui->NameArchiveLineEdit->text();
+    arhivePath+=".sp";
     bool flag=false;
     BHuffman * hf = new BHuffman();
     std::string Pathes = allPathes.toUtf8().constData();
-    std::string where = ui->ArchiveLineEdit->text().toUtf8().constData();
+    std::string where = arhivePath.toUtf8().constData();
 
     flag =   hf->Compression(Pathes,where);
 

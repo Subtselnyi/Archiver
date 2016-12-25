@@ -3,6 +3,8 @@
 #include <QPushButton>
 #include <QFileDialog>
 #include <QCompleter>
+#include <QListView>
+#include <QTreeView>
 #include <QFileSystemModel>
 #include "progressbardialog.h"
 
@@ -24,14 +26,19 @@ DeArchiveDialog::~DeArchiveDialog()
 }
 
 void DeArchiveDialog::on_DeArchiveSearchButton_clicked()
-{
-    QString fileName = QFileDialog::getOpenFileName(
+{    
+    QFileDialog dialog(this);
+    dialog.setFileMode(QFileDialog::Directory);
+    dialog.setOption(QFileDialog::ShowDirsOnly);
+    QString fileName = dialog.getExistingDirectory(
                 this,
                 tr("File Path (SP-Archiver)"),
-                "C://",
-                "All files (*)"
+                QDir::currentPath(),
+                QFileDialog::DontResolveSymlinks
                 );
+
     ui->DeArchiveLineEdit->setText(fileName);
+
 }
 
 void DeArchiveDialog::on_DeArchiveOkButton_clicked()

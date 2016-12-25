@@ -1,6 +1,7 @@
 #include "bhuffman.h"
 
 #include <QDebug>
+#include <QMessageBox>
 #include "progressbardialog.h"
 BHuffman::BHuffman() {
 
@@ -27,6 +28,9 @@ bool BHuffman::Compression(string bFileName,string where) {
 
     if(!bf) {
         qInfo()<<"Problem bf";
+        QMessageBox Msgbox;
+        Msgbox.setText("Error opening file");
+        Msgbox.exec();
         cout << "Error opening file!";
         return false;
     }

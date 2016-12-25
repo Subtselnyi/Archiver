@@ -32,12 +32,21 @@ AddFileDialog::~AddFileDialog()
 
 void AddFileDialog::on_AddFileSearchButton_clicked()
 {
-    QString fileName = QFileDialog::getOpenFileName(
+    QStringList fileNames = QFileDialog::getOpenFileNames(
                 this,
                 tr("Add File (SP-Archiver)"),
-                "C://",
+                QDir::currentPath(),
                 "All files (*.*)"
                 );
+    QString fileName;
+    if( !fileNames.isEmpty() )
+    {
+        for (int i =0;i<fileNames.count();i++){
+           fileName+=fileNames.at(i);
+           fileName+="\n";
+        }
+
+    }
     ui->AddFileLineEdit->setText(fileName);
 
 }
