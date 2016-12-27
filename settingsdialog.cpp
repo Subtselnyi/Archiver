@@ -10,8 +10,8 @@ SettingsDialog::SettingsDialog(const int rules,QWidget *parent) :
     ui->SettingsMusicCheckBox->setChecked(true);
     if (rules%100>=10)
     ui->SettingsVideoCheckBox->setChecked(true);
-    if (rules%2!=0)
-    ui->SettingsPasswordCheckBox->setChecked(true);
+   // if (rules%2!=0)
+    //ui->SettingsPasswordCheckBox->setChecked(true);
 }
 
 SettingsDialog::~SettingsDialog()
@@ -30,10 +30,10 @@ void SettingsDialog::on_SettingsOkButton_clicked()
     {
         code+=10;
     }
-    if (ui->SettingsPasswordCheckBox->isChecked())
+    /*if (ui->SettingsPasswordCheckBox->isChecked())
     {
         code+=1;
-    }
+    }*/
     emit CheckBoxes(code);
     close();
 }

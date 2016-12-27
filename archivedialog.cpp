@@ -5,9 +5,9 @@
 #include <QCompleter>
 #include <QFileSystemModel>
 #include <QMessageBox>
-#include "progressbardialog.h"
+#include <QDebug>
 
-ArchiveDialog::ArchiveDialog(QString allPathes,QWidget *parent) :
+ArchiveDialog::ArchiveDialog(vector <string> allPathes,QWidget *parent) :
     QDialog(parent),
     ui(new Ui::ArchiveDialog)
 {
@@ -46,21 +46,49 @@ void ArchiveDialog::on_ArchiveOkButton_clicked()
 {
     //emit FilePathArchive(ui->ArchiveLineEdit->text());
     QString arhivePath = ui->ArchiveLineEdit->text();
-    arhivePath += ui->NameArchiveLineEdit->text();
-    arhivePath+=".sp";
+    QString arhiveName = ui->NameArchiveLineEdit->text();
+    arhiveName+=".sp";
     bool flag=false;
-    BHuffman * hf = new BHuffman();
-    std::string Pathes = allPathes.toUtf8().constData();
-    std::string where = arhivePath.toUtf8().constData();
+    SParch * arch = new SParch();
 
-    flag =   hf->Compression(Pathes,where);
+    std::string strArchivePath = arhivePath.toUtf8().constData();
+    std::string strArchiveName = arhiveName.toUtf8().constData();
 
-    if (flag){
-        close();
-        QMessageBox Msgbox;
+        std::istringstream iss(strArchivePath);
+        std::string token;
+        std::string newStrArhcivePath;
+        while (std::getline(iss, token, '/'))
+        {
+            newStrArhcivePath+=token +"\\";
+        }
+        newStrArhcivePath+=strArchiveName;
+
+
+       for(int i=0; i<allPathes.size();i++)
+       {
+           std::istringstream iss(allPathes[i]);
+           std::string token;
+           std::string newAllPathesTemp;
+           while (std::getline(iss, token, '/'))
+           {
+               newAllPathesTemp+=token +"\\";
+           }
+           newAllPathesTemp=newAllPathesTemp.substr(0,newAllPathesTemp.length()-1);
+           allPathes[i]=newAllPathesTemp;
+
+       }
+       QString strvectors = QString::fromStdString(allPathes[0]);
+       qInfo()<<strvectors;
+
+
+    arch->Compression(allPathes, newStrArhcivePath);
+
+   // flag =   hf->Compression(Pathes,where);
+
+     close();
+     QMessageBox Msgbox;
             Msgbox.setText("Files succesfully archived");
             Msgbox.exec();
-    }
 
 }
 

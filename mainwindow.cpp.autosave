@@ -100,7 +100,7 @@ void MainWindow::SettingsCheckBoxes(const int code)
 {
     setted = code;
     QString s = QString::number(code);
-     ui->listWidget->addItem(s);
+     //ui->listWidget->addItem(s);
 }
 
 

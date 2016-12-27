@@ -1,9 +1,11 @@
 #ifndef ARCHIVEDIALOG_H
 #define ARCHIVEDIALOG_H
-
+#pragma once
 #include <QDialog>
-
-#include "bhuffman.h"
+#include <vector>
+#include "SParch.h"
+#include <string>
+#include <sstream>
 
 namespace Ui {
 class ArchiveDialog;
@@ -14,9 +16,9 @@ class ArchiveDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit ArchiveDialog(QString,QWidget *parent = 0);
+    explicit ArchiveDialog(vector<string>,QWidget *parent = 0);
     ~ArchiveDialog();
-    QString allPathes;
+    vector <string> allPathes;
 signals:
     void FilePathArchive(const QString &atr);
 

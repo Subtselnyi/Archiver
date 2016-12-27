@@ -30,8 +30,10 @@ SOURCES += main.cpp\
     archivedialog.cpp \
     dearchivedialog.cpp \
     progressbardialog.cpp \
-    bhuffman.cpp \
-    writeread.cpp
+    writeread.cpp \
+    Archiver.cpp \
+    SParch.cpp \
+    BHuffman.cpp
 
 HEADERS  += mainwindow.h \
     addfiledialog.h \
@@ -39,8 +41,10 @@ HEADERS  += mainwindow.h \
     archivedialog.h \
     dearchivedialog.h \
     progressbardialog.h \
-    bhuffman.h \
-    writeread.h
+    writeread.h \
+    Archiver.h \
+    SParch.h \
+    BHuffman.h
 
 FORMS    += mainwindow.ui \
     addfiledialog.ui \

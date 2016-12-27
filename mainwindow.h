@@ -1,9 +1,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-
+#pragma once
 #include <QWidget>
 #include <QMainWindow>
-
+#include <vector>
 namespace Ui {
 class MainWindow;
 }
@@ -16,6 +16,7 @@ public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
     int setted=0;
+    double comress;
 
 
 protected:
